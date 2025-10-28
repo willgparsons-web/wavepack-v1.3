@@ -1,0 +1,235 @@
+/* ===============================================================
+   Wavepack Analyzer v1.3 – Frontend Style
+   Theme: dark blueprint with signal-grid / honeycomb feeling
+   =============================================================== */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #cfd8dc;
+  background-color: #0b0e15;
+  background-image: radial-gradient(#111 1px, transparent 1px),
+                    radial-gradient(#111 1px, transparent 1px);
+  background-position: 0 0, 25px 25px;
+  background-size: 50px 50px;
+}
+
+header {
+  text-align: center;
+  padding: 10px 0;
+  background: linear-gradient(180deg, #0f1622, #090d13);
+  border-bottom: 2px solid #1a2738;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #39d0ff;
+  letter-spacing: 1px;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.tab {
+  background: #101620;
+  color: #aaa;
+  border: 1px solid #1a2738;
+  border-radius: 4px 4px 0 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+.tab:hover {
+  color: #39d0ff;
+}
+.tab.active {
+  background: #17202c;
+  border-bottom: 2px solid #39d0ff;
+  color: #fff;
+}
+
+.tab-content {
+  display: none;
+  animation: fadein 0.3s;
+}
+.tab-content.active {
+  display: block;
+}
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Panels and inputs */
+.panel {
+  background: #111822;
+  border: 1px solid #1a2738;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.panel-title {
+  color: #39d0ff;
+  font-weight: 600;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #1a2738;
+  padding-bottom: 5px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+input, select {
+  background: #0b0f17;
+  border: 1px solid #1a2738;
+  color: #cfd8dc;
+  padding: 4px 6px;
+  border-radius: 4px;
+  width: 120px;
+}
+select {
+  width: 140px;
+}
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 0.3;
+}
+
+button {
+  background: #172a3a;
+  color: #39d0ff;
+  border: 1px solid #39d0ff;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+button:hover {
+  background: #39d0ff;
+  color: #0b0f17;
+}
+
+/* Layout helpers */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.center {
+  text-align: center;
+}
+
+/* Visual area */
+.visual-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+#schematic {
+  border: 1px solid #1a2738;
+  background-color: #0b0f17;
+  border-radius: 6px;
+}
+#infoPanel {
+  background: #101620;
+  border: 1px solid #1a2738;
+  border-radius: 6px;
+  padding: 10px 15px;
+  min-width: 220px;
+  color: #cfd8dc;
+}
+#infoPanel h3 {
+  color: #39d0ff;
+  margin-top: 0;
+  font-size: 1rem;
+  border-bottom: 1px solid #1a2738;
+  padding-bottom: 4px;
+}
+#infoContent div {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* Scale bar */
+.scale-bar {
+  margin-top: 10px;
+  text-align: center;
+}
+.scale-line {
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(to right, #39d0ff, transparent);
+  margin: 0 auto;
+}
+.scale-label {
+  font-size: 0.8rem;
+  color: #89b4d6;
+}
+
+/* Charts */
+.chart-panel {
+  background: #101620;
+  border: 1px solid #1a2738;
+  border-radius: 6px;
+  padding: 10px;
+  height: 400px;
+}
+.chart-panel h4 {
+  color: #39d0ff;
+  margin-top: 0;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Toggle Switch */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+}
+.toggle input {
+  display: none;
+}
+.slider {
+  width: 34px;
+  height: 18px;
+  background: #222;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: #39d0ff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+.toggle input:checked + .slider::before {
+  transform: translateX(16px);
+}
+.toggle-label {
+  font-size: 0.85rem;
+  color: #89b4d6;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wavepack Analyzer v1.3</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <h1>Wavepack Analyzer v1.3</h1>
+    </header>
+
+    <main>
+      <nav class="tabs">
+        <button class="tab active" id="tab-inputs">Inputs</button>
+        <button class="tab" id="tab-outputs">Outputs</button>
+      </nav>
+
+      <!-- ======================== INPUT TAB ======================== -->
+      <section class="tab-content active" id="inputs">
+        <div class="grid2">
+
+          <!-- INPUTS PANEL -->
+          <div class="panel">
+            <div class="panel-title">Geometry</div>
+            <label>Shape
+              <select id="shape">
+                <option value="Rectangular">Rectangular</option>
+                <option value="Square">Square</option>
+                <option value="Circular (Grid)">Circular (Grid)</option>
+                <option value="Circular (Staggered)">Circular (Staggered)</option>
+              </select>
+            </label>
+            <label>Dimension a (in) <input id="a_in" type="number" step="0.01" value="2.0"></label>
+            <label>Dimension b (in) <input id="b_in" type="number" step="0.01" value="2.0"></label>
+            <label>Wall Thickness (in) <input id="t_in" type="number" step="0.01" value="0.125"></label>
+            <label>Length (in) <input id="L_in" type="number" step="1" value="10"></label>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Flow & Environment</div>
+            <label>Fluid
+              <select id="fluid">
+                <option>Air</option>
+                <option>Water</option>
+                <option>Diesel</option>
+                <option>Oil</option>
+                <option>Gasoline</option>
+              </select>
+            </label>
+            <label>Material
+              <select id="material">
+                <option>Stainless Steel</option>
+                <option>Aluminum</option>
+                <option>Copper</option>
+                <option>Brass</option>
+                <option>Titanium</option>
+              </select>
+            </label>
+            <label>Velocity Target (ft/s)
+              <input id="vel_target_fts" type="number" step="0.1" value="100">
+            </label>
+            <label>ΔP Limit (psi)
+              <input id="dp_limit_psi" type="number" step="0.01" value="0.75">
+            </label>
+            <label>Min Temp (°F)
+              <input id="T_min_F" type="number" step="1" value="-40">
+            </label>
+            <label>Max Temp (°F)
+              <input id="T_max_F" type="number" step="1" value="120">
+            </label>
+          </div>
+
+        </div>
+
+        <div class="panel center">
+          <button id="analyzeBtn">Run Analysis</button>
+          <button id="reportBtn">Generate Report</button>
+          <label class="toggle">
+            <input type="checkbox" id="unitToggle">
+            <span class="slider"></span> <span class="toggle-label">SI Units</span>
+          </label>
+        </div>
+
+        <!-- VISUAL AREA -->
+        <div class="visual-grid">
+          <svg id="schematic" width="600" height="400">
+            <defs></defs>
+            <g id="tubeArray"></g>
+          </svg>
+          <aside id="infoPanel">
+            <h3>Wavepack Data</h3>
+            <div id="infoContent">
+              <div><b>Array:</b> <span id="c_array">—</span></div>
+              <div><b>Dimensions:</b> <span id="c_dims">—</span></div>
+              <div><b>Velocity:</b> <span id="c_v">—</span></div>
+              <div><b>ΔP:</b> <span id="c_dp">—</span></div>
+              <div><b>Weight:</b> <span id="c_w">—</span></div>
+              <div><b>Cutoff fc:</b> <span id="c_fc">—</span></div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="scale-bar">
+          <div class="scale-line"></div>
+          <div class="scale-label">Scale (in)</div>
+        </div>
+      </section>
+
+      <!-- ======================== OUTPUT TAB ======================== -->
+      <section class="tab-content" id="outputs">
+        <div class="panel">
+          <div class="panel-title">Performance Charts</div>
+          <div class="grid2">
+            <div class="chart-panel">
+              <h4>Pressure / Velocity vs Temperature</h4>
+              <canvas id="chartPT"></canvas>
+            </div>
+            <div class="chart-panel">
+              <h4>Attenuation vs Frequency</h4>
+              <canvas id="chartAF"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
